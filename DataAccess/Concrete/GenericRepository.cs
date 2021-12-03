@@ -48,5 +48,10 @@ namespace DataAccess.Concrete
         {
             _context.Set<T>().Remove(entity);
         }
+
+        public IQueryable<T> GetQuery()
+        {
+            return _context.Set<T>().AsQueryable();
+        }
     }
 }
