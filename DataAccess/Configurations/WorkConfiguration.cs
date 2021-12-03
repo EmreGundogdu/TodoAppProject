@@ -13,10 +13,9 @@ namespace DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Work> builder)
         {
-            builder.HasKey(x=>x.Id);
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.Definition).HasMaxLength(300).IsRequired();
             builder.Property(x => x.IsCompleted).IsRequired();
-
         }
     }
 }

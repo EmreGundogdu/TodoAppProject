@@ -12,9 +12,9 @@ namespace Business.DependencyResolvers.Microsoft
 {
     public static class StartupExtensions
     {
-        public static void AddDependencies(this IServiceCollection services,IConfiguration configuration)
+        public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<TodoContext>(opt=>
+            services.AddDbContext<TodoContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("Local"));
             });
