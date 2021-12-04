@@ -10,5 +10,6 @@ namespace Business.Interface
     public interface IWorkService
     {
         Task<List<WorkListDto>> GetAll();
+        Task Create(WorkCreateDto dto);
     }
 }

@@ -19,6 +19,16 @@ namespace Business.Concrete
             _unitOfWork = unitOfWork;
         }
 
+        public async Task Create(WorkCreateDto dto)
+        {
+            await _unitOfWork.GetRepository<Work>().Create(new()
+            {
+                IsCompleted = dto.IsCompleted,
+                Definition = dto.Definition
+            });
+            await _unitOfWork.SaveChanges();
+        }
+
         public async Task<List<WorkListDto>> GetAll()
         {
             var list = await _unitOfWork.GetRepository<Work>().GetAll();
