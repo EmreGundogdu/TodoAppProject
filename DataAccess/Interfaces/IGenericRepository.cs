@@ -9,10 +9,10 @@ namespace DataAccess.Interfaces
 {
     public interface IGenericRepository<T>
     {
-        Task<List<T>> GetAll();
-        Task<T> GetById(object id);
-        Task<T> GetByFilter(Expression<Func<T, bool>> filter, bool asNoTracking = false);
-        Task Create(T entity);
+        Task<List<T>> GetAllAsync();
+        Task<T> GetByIdAsync(object id);
+        Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter, bool asNoTracking = false);
+        Task CreateAsync(T entity);
         void Update(T entity);
         void Remove(T entity);
         IQueryable<T> GetQuery();

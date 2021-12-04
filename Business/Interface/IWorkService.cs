@@ -11,5 +11,6 @@ namespace Business.Interface
     {
         Task<List<WorkListDto>> GetAll();
         Task Create(WorkCreateDto dto);
+        Task<WorkListDto> GetById(object id);
     }
 }

@@ -21,7 +21,7 @@ namespace Business.Concrete
 
         public async Task Create(WorkCreateDto dto)
         {
-            await _unitOfWork.GetRepository<Work>().Create(new()
+            await _unitOfWork.GetRepository<Work>().CreateAsync(new()
             {
                 IsCompleted = dto.IsCompleted,
                 Definition = dto.Definition
@@ -31,7 +31,7 @@ namespace Business.Concrete
 
         public async Task<List<WorkListDto>> GetAll()
         {
-            var list = await _unitOfWork.GetRepository<Work>().GetAll();
+            var list = await _unitOfWork.GetRepository<Work>().GetAllAsync();
             var workList = new List<WorkListDto>();
             if (list != null & list.Count > 0)
             {
@@ -46,6 +46,16 @@ namespace Business.Concrete
                 }
             }
             return workList;
+        }
+
+        public async Task<WorkListDto> GetById(object id)
+        {
+            var work = await _unitOfWork.GetRepository<Work>().GetByIdAsync(id);
+            return new()
+            {
+                Definition = work.Definition,
+                IsCompleted = work.IsCompleted
+            };
         }
     }
 }
