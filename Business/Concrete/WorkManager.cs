@@ -64,5 +64,16 @@ namespace Business.Concrete
             _unitOfWork.GetRepository<Work>().Remove(deletedWork);
             await _unitOfWork.SaveChanges();
         }
+
+        public async Task Update(WorkUpdateDto dto)
+        {
+            _unitOfWork.GetRepository<Work>().Update(new()
+            {
+                Definition = dto.Definition,
+                IsCompleted = dto.IsCompleted,
+                Id = dto.Id
+            });
+            await _unitOfWork.SaveChanges();
+        }
     }
 }
