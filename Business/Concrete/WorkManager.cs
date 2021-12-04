@@ -57,5 +57,12 @@ namespace Business.Concrete
                 IsCompleted = work.IsCompleted
             };
         }
+
+        public async Task Remove(object id)
+        {
+            var deletedWork = await _unitOfWork.GetRepository<Work>().GetByIdAsync(id);
+            _unitOfWork.GetRepository<Work>().Remove(deletedWork);
+            await _unitOfWork.SaveChanges();
+        }
     }
 }
