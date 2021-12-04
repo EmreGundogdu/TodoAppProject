@@ -1,4 +1,7 @@
-﻿using DataAccess.Contexts;
+﻿using Business.Concrete;
+using Business.Interface;
+using DataAccess.Contexts;
+using DataAccess.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +21,8 @@ namespace Business.DependencyResolvers.Microsoft
             {
                 opt.UseSqlServer(configuration.GetConnectionString("Local"));
             });
+            services.AddScoped<IWorkService, WorkManager>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }
