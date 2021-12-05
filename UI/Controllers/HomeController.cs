@@ -1,4 +1,5 @@
 ﻿using Business.Interface;
+using Dtos.WorkDtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,20 @@ namespace UI.Controllers
         {
             var workList = await _workService.GetAll();
             return View(workList);
+        }
+        public IActionResult Create()
+        {
+            return View(new WorkCreateDto());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(WorkCreateDto dto)
+        {
+            if (ModelState.IsValid)
+            {
+                await _workService.Create(dto);
+                return RedirectToAction("Index");
+            }
+            return View(dto);
         }
     }
 }
