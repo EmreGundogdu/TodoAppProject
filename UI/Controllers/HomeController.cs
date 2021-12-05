@@ -39,7 +39,12 @@ namespace UI.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var dto = await _workService.GetById(id);
-            return View(dto);
+            return View(new WorkUpdateDto() //worklistdto to workupdatedto
+            {
+                Id = dto.Id,
+                Definition = dto.Definition,
+                IsCompleted = dto.IsCompleted
+            });
         }
         [HttpPost]
         public async Task<IActionResult> Update(WorkUpdateDto dto)
