@@ -15,7 +15,7 @@ namespace DataAccess.Interfaces
         Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter, bool asNoTracking = false);
         Task CreateAsync(T entity);
         void Update(T entity);
-        void Remove(T entity);
+        void Remove(object id);
         IQueryable<T> GetQuery();
     }
 }

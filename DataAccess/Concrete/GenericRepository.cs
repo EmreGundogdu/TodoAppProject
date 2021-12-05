@@ -42,13 +42,14 @@ namespace DataAccess.Concrete
 
         public void Update(T entity)
         {
-            var updatedEntity = _context.Set<T>().Find(entity.Id);
-            _context.Entry(updatedEntity).CurrentValues.SetValues(entity);
+            var updatedEntity = _context.Set<T>().Find(entity.Id); //sadece değişen alanları setleyip güncellemek performans açısından önemli
+            _context.Entry(updatedEntity).CurrentValues.SetValues(entity); // o'da bu şekilde yapılır.
         }
 
-        public void Remove(T entity)
+        public void Remove(object id)
         {
-            _context.Set<T>().Remove(entity);
+            var deletedEntity = _context.Set<T>().Find(id);
+            _context.Set<T>().Remove(deletedEntity);
         }
 
         public IQueryable<T> GetQuery()

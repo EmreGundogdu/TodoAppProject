@@ -58,10 +58,9 @@ namespace Business.Concrete
             };
         }
 
-        public async Task Remove(object id)
+        public async Task Remove(int id)
         {
-            var deletedWork = await _unitOfWork.GetRepository<Work>().GetByIdAsync(id);
-            _unitOfWork.GetRepository<Work>().Remove(deletedWork);
+            _unitOfWork.GetRepository<Work>().Remove(id);
             await _unitOfWork.SaveChanges();
         }
 
