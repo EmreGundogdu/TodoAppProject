@@ -1,6 +1,18 @@
-﻿<table>
+﻿@model List<WorkListDto>
+<table class="table table-hover table-bordered table-sm">
     <thead>
-        <tr></tr>
+        <tr>
+            <th>İş</th>
+            <th>Durumu</th>
+        </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Definition</td>
+                <td>@(item.IsCompleted?"Tamamlandı":"Tamamlanmadı")</td>
+            </tr>
+        }
+    </tbody>
 </table>
