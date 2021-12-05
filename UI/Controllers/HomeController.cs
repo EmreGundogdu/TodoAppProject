@@ -36,5 +36,10 @@ namespace UI.Controllers
             }
             return View(dto);
         }
+        public async Task<IActionResult> Update(int id)
+        {
+            var dto = await _workService.GetById(id);
+            return View(dto);
+        }
     }
 }

@@ -48,9 +48,9 @@ namespace Business.Concrete
             return workList;
         }
 
-        public async Task<WorkListDto> GetById(object id)
+        public async Task<WorkListDto> GetById(int id)
         {
-            var work = await _unitOfWork.GetRepository<Work>().GetByIdAsync(id);
+            var work = await _unitOfWork.GetRepository<Work>().GetByFilterAsync(x=>x.Id==id);
             return new()
             {
                 Definition = work.Definition,
