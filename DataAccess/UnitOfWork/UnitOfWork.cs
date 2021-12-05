@@ -1,6 +1,7 @@
 ﻿using DataAccess.Concrete;
 using DataAccess.Contexts;
 using DataAccess.Interfaces;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace DataAccess.UnitOfWork
             _context = context;
         }
 
-        public IGenericRepository<T> GetRepository<T>() where T : class, new()
+        public IGenericRepository<T> GetRepository<T>() where T : BaseEntity
         {
             return new GenericRepository<T>(_context);
         }

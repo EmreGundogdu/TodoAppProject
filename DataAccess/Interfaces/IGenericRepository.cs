@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Interfaces
 {
-    public interface IGenericRepository<T>
+    public interface IGenericRepository<T> where T : BaseEntity
     {
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(object id);

@@ -1,5 +1,6 @@
 ﻿using DataAccess.Contexts;
 using DataAccess.Interfaces;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class, new()
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly TodoContext _context;
 
@@ -41,7 +42,8 @@ namespace DataAccess.Concrete
 
         public void Update(T entity)
         {
-            _context.Set<T>().Update(entity);
+            var updatedEntity = _context.Set<T>().Find(entity.Id);
+            _context.Entry(updatedEntity).CurrentValues.SetValues(entity);
         }
 
         public void Remove(T entity)
